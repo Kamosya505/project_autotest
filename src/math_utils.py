@@ -10,7 +10,7 @@ def calculate(a: float, b: float, operation: str) -> float:
             return a * b
         elif operation == "/":
             if b == 0:
-                raise ValueError("Деление на ноль недопустимо")
+                raise ValueError("Деление на ноль недопустимо!!!")
             return a / b
         else:
             raise ValueError(f"Недопустимая операция: {operation}")
