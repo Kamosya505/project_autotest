@@ -1,5 +1,3 @@
-# tests/test_math_utils.py
-
 import unittest
 from src.math_utils import calculate
 

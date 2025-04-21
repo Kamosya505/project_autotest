@@ -1,5 +1,3 @@
-# tests/test_integration.py
-
 import unittest
 from unittest.mock import patch
 from src.payment import handle_transaction

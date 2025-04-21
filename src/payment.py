@@ -1,5 +1,3 @@
-# src/payment.py
-
 from src.notifier import notify_user
 from src.logger import logger
 

@@ -1,0 +1,84 @@
+# Создаем текстовый патч для исправления всех замечаний flake8
+patch_content = """
+diff --git a/src/math_utils.py b/src/math_utils.py
+index 4e3b9a1..0efba17 100644
+--- a/src/math_utils.py
++++ b/src/math_utils.py
+@@ -1,6 +1,7 @@
+ from src.logger import logger
++
+
+ def calculate(a: float, b: float, operation: str) -> float:
+     try:
+diff --git a/src/payment.py b/src/payment.py
+index f0e9ab2..6f4f9cd 100644
+--- a/src/payment.py
++++ b/src/payment.py
+@@ -1,7 +1,9 @@
+ from src.notifier import notify_user
+ from src.logger import logger
++
+
+ def process_payment(amount: float) -> bool:
+     if amount <= 0:
+         raise ValueError("Сумма должна быть положительной")
+     return True
++
+
+ def handle_transaction(amount: float):
+     try:
+diff --git a/tests/test_integration.py b/tests/test_integration.py
+index 7ae2b53..f579e59 100644
+--- a/tests/test_integration.py
++++ b/tests/test_integration.py
+@@ -3,10 +3,12 @@
+ from unittest.mock import patch
+ from src.payment import handle_transaction
++
+
+ class TestIntegration(unittest.TestCase):
+
+     @patch("src.payment.notify_user")
+     def test_valid_payment(self, mock_notify):
+-        handle_transaction(100)
+-        mock_notify.assert_called_once_with("Платёж на сумму 100 успешно обработан.")
++        handle_transaction(100)
++        mock_notify.assert_called_once_with(
++            "Платёж на сумму 100 успешно обработан."
++        )
+
+     def test_zero_amount(self):
+         with self.assertRaises(ValueError):
+@@ def test_logging_on_error(self):
+         with open("error.log", "r", encoding="utf-8") as f:
+             self.assertIn("Ошибка в handle_transaction", f.read())
++
+
+ if __name__ == "__main__":
+     unittest.main()
+diff --git a/tests/test_math_utils.py b/tests/test_math_utils.py
+index bffae92..1b4c845 100644
+--- a/tests/test_math_utils.py
++++ b/tests/test_math_utils.py
+@@ -1,6 +1,7 @@
+ import unittest
+ from src.math_utils import calculate
++
+
+ class TestCalculate(unittest.TestCase):
+
+@@ def test_logging_on_invalid_operation(self):
+         with open("error.log", "r", encoding="utf-8") as f:
+             self.assertIn("Недопустимая операция", f.read())
++
+
+ if __name__ == "__main__":
+     unittest.main()
+"""
+
+# Сохраняем как файл patch
+with open("/mnt/data/fix_flake8.patch", "w", encoding="utf-8") as f:
+    f.write(patch_content)
+
+"/mnt/data/fix_flake8.patch"
+

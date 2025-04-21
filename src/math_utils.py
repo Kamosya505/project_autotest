@@ -1,5 +1,3 @@
-# src/math_utils.py
-
 from src.logger import logger
 
 
