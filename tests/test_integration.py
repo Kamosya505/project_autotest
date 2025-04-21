@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import patch
+from src.payment import handle_transaction
 
 
 class TestIntegration(unittest.TestCase):
