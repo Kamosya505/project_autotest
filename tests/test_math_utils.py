@@ -1,6 +1,7 @@
 import unittest
 from src.math_utils import calculate
 
+
 class TestCalculate(unittest.TestCase):
 
     def test_addition(self):
