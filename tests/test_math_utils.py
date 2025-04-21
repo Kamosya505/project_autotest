@@ -1,5 +1,8 @@
+# tests/test_math_utils.py
+
 import unittest
 from src.math_utils import calculate
+
 
 class TestCalculate(unittest.TestCase):
 
@@ -38,6 +41,7 @@ class TestCalculate(unittest.TestCase):
             pass
         with open("error.log", "r", encoding="utf-8") as f:
             self.assertIn("Недопустимая операция", f.read())
+
 
 if __name__ == "__main__":
     unittest.main()

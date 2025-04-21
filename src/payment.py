@@ -1,10 +1,14 @@
+# src/payment.py
+
 from src.notifier import notify_user
 from src.logger import logger
+
 
 def process_payment(amount: float) -> bool:
     if amount <= 0:
         raise ValueError("Сумма должна быть положительной")
     return True
+
 
 def handle_transaction(amount: float):
     try:
