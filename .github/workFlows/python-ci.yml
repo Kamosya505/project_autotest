@@ -1,0 +1,29 @@
+name: Python CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Получаем код проекта
+      uses: actions/checkout@v3
+
+    - name: Устанавливаем Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.11"
+
+    - name: Устанавливаем зависимости
+      run: |
+        pip install -r requirements.txt
+        pip install flake8 pytest
+
+    - name: Проверка стиля кода
+      run: flake8 src tests
+
+    - name: Запуск тестов
+      run: pytest
